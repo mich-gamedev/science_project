@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqv5m1dox1t0i"]
+[gd_scene load_steps=10 format=3 uid="uid://v4j2ev1xyf4s"]
 
-[ext_resource type="Script" uid="uid://c840d1akcwcpg" path="res://scenes/variables.gd" id="1_fvetl"]
-[ext_resource type="PackedScene" uid="uid://dryodvqadwbai" path="res://objects/player/player.tscn" id="1_y6ged"]
-[ext_resource type="PackedScene" uid="uid://b3xy5lqoiyks0" path="res://objects/enemy/enemy.tscn" id="2_fvetl"]
-[ext_resource type="FontFile" uid="uid://3lpxm131m2md" path="res://assets/FiraCode-VF.ttf" id="3_jo2c7"]
+[ext_resource type="Script" uid="uid://c840d1akcwcpg" path="res://scenes/variables.gd" id="1_ufvul"]
+[ext_resource type="PackedScene" uid="uid://dryodvqadwbai" path="res://objects/player/player.tscn" id="2_ih1bf"]
+[ext_resource type="PackedScene" uid="uid://b3xy5lqoiyks0" path="res://objects/enemy/enemy.tscn" id="3_67yh8"]
+[ext_resource type="FontFile" uid="uid://3lpxm131m2md" path="res://assets/FiraCode-VF.ttf" id="4_4s6ol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dm0k"]
 bg_color = Color(0.117647, 0.117647, 0.180392, 1)
@@ -31,7 +31,7 @@ normal = Vector2(-1, 0)
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_fvetl")
+script = ExtResource("1_ufvul")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -100
@@ -62,29 +62,59 @@ shape = SubResource("WorldBoundaryShape2D_h2yge")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 180)
 
-[node name="Player" parent="." instance=ExtResource("1_y6ged")]
+[node name="Player" parent="." instance=ExtResource("2_ih1bf")]
 position = Vector2(320, 184)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_fvetl")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_67yh8")]
 position = Vector2(104, 160)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_fvetl")]
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_67yh8")]
 position = Vector2(432, 208)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
 
-[node name="CharacterBody2D3" parent="." instance=ExtResource("2_fvetl")]
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_67yh8")]
 position = Vector2(240, 280)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
 
-[node name="CharacterBody2D4" parent="." instance=ExtResource("2_fvetl")]
+[node name="CharacterBody2D4" parent="." instance=ExtResource("3_67yh8")]
 position = Vector2(336, 80)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("3_67yh8")]
+position = Vector2(578, 311)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("3_67yh8")]
+position = Vector2(548, 83)
+collision_layer = 1
+speed = 144.0
+accel = 64.0
+stage = 5
 
 [node name="Label" type="RichTextLabel" parent="."]
 offset_left = 27.0
 offset_right = 611.0
 offset_bottom = 24.0
 theme_override_colors/default_color = Color(0.65098, 0.678431, 0.784314, 1)
-theme_override_fonts/normal_font = ExtResource("3_jo2c7")
+theme_override_fonts/normal_font = ExtResource("4_4s6ol")
 bbcode_enabled = true
-text = "[center]applying [wave]physics[/wave] to games : enemy ai"
+text = "[center]code: drift + accelerate + bounce + [wave]speed"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1

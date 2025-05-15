@@ -13,7 +13,8 @@ var scenes: Array[String] = [
 	"res://scenes/example_accelerate_play.tscn",
 	"res://scenes/example_bounce_text.tscn",
 	"res://scenes/example_bounce_play.tscn",
-	"res://scenes/how_to_learn.tscn"
+	"res://scenes/how_to_learn.tscn",
+	"res://scenes/final_speed_test.tscn"
 ]
 var idx: int
 

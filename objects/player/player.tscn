@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dryodvqadwbai"]
+[gd_scene load_steps=22 format=3 uid="uid://dryodvqadwbai"]
 
 [ext_resource type="Script" uid="uid://cpuml1uia00j5" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="Script" uid="uid://g8kt8k0lx8om" path="res://objects/player/assets.gd" id="2_g7ett"]
 [ext_resource type="Texture2D" uid="uid://c3v457nk42faa" path="res://assets/squircle.svg" id="3_ssrue"]
+[ext_resource type="Texture2D" uid="uid://dwmn5hf3e023r" path="res://assets/star.svg" id="4_jnjyq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 bg_color = Color(0.0941176, 0.0941176, 0.145098, 1)
@@ -137,6 +138,53 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lq1w"]
 size = Vector2(12, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssrue"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve" id="Curve_gnkmh"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.304839), 0.0, 29.1688, 0, 0, Vector2(0.125348, 0.996774), -9.40927, -2.88843, 0, 0, Vector2(0.988858, 0.0112903), 0.0545465, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xkryw"]
+curve = SubResource("Curve_gnkmh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ow0dq"]
+lifetime_randomness = 0.75
+particle_flag_disable_z = true
+angular_velocity_min = 360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_xkryw")
+
+[sub_resource type="Curve" id="Curve_jnjyq"]
+_data = [Vector2(0.00557103, 0.510753), 0.0, 16.0585, 0, 0, Vector2(0.169916, 1), -4.09386, -0.541187, 0, 0, Vector2(1, 0), -4.47142, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnkmh"]
+curve = SubResource("Curve_jnjyq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkryw"]
+lifetime_randomness = 0.8
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+spread = 180.0
+initial_velocity_min = 125.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+damping_min = 600.0
+damping_max = 800.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_gnkmh")
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_cqmt1")
@@ -151,12 +199,14 @@ particle = NodePath("GPUParticles2D")
 speed = 144.0
 
 [node name="Shadow" type="Panel" parent="Assets"]
+z_index = -4
 offset_left = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Assets"]
+modulate = Color(0.498039, 0.517647, 0.611765, 1)
 texture = ExtResource("3_ssrue")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_g7ett")
@@ -184,3 +234,30 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_5lq1w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_ssrue")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.976471, 0.886275, 0.686275, 1)
+z_index = 100
+emitting = false
+amount = 1
+texture = ExtResource("4_jnjyq")
+lifetime = 0.66
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ow0dq")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(0.952941, 0.545098, 0.658824, 1)
+emitting = false
+texture = ExtResource("3_ssrue")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xkryw")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

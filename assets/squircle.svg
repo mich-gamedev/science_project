@@ -10,6 +10,7 @@
    inkscape:export-filename="squircle.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
+   sodipodi:docname="squircle.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +41,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#7f849c;fill-opacity:1;stroke-width:0.583308"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.583308"
        id="rect1"
        width="16"
        height="16"
