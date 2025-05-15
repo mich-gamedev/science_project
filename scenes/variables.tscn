@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://nxudsk0dkopa"]
+
+[ext_resource type="Script" uid="uid://c840d1akcwcpg" path="res://scenes/variables.gd" id="1_tu8g5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5dis"]
+bg_color = Color(0.117647, 0.117647, 0.180392, 1)
+border_width_left = 3
+border_width_top = 8
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.705882, 0.745098, 0.996078, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u5dis"]
+color = Color(0.270588, 0.278431, 0.352941, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_tu8g5")
+list = PackedStringArray("· variables in programming are like in math\n\t∘︎ are used to represent a specific value\n\t∘︎ can be changed, a.k.a. \"set\" to values\n", "· variables in programming are like in math\n\t∘︎ are used to represent a specific value\n\t∘︎ can be changed, a.k.a. \"set\" to values\n\n[color=#9399b2]--- Defining ---[/color]\n★ [color=#f38ba8]var[/color] variable_name = [color=#b4befe]value[/color]\n\t∘︎ [color=#f38ba8]var[/color] : keyword to define and create a new variable\n\t∘︎ variable_name : the name of the variable, can be used later to get and \n\t\t\t\t\t  set the variable\'s value\n\t∘︎ [color=#b4befe]value[/color] : the default value of this variable\n", "· variables in programming are like in math\n\t∘︎ are used to represent a specific value\n\t∘︎ can be changed, a.k.a. \"set\" to values\n\n[color=#9399b2]--- Defining ---[/color]\n★ [color=#f38ba8]var[/color] variable_name = [color=#b4befe]value[/color]\n\t∘︎ [color=#f38ba8]var[/color] : keyword to define and create a new variable\n\t∘︎ variable_name : the name of the variable, can be used later to get and \n\t\t\t\t\t  set the variable\'s value\n\t∘︎ [color=#b4befe]value[/color] : the default value of this variable\n\n[color=#9399b2]--- Using ---[/color]\n· you can use the variable\'s name to get and set it, i.e. ;\n\t[color=#f38ba8]var[/color] health = [color=#b4befe]5[/color]\n\t[color=#cba6f7]print[/color](health) [color=#6c7086]# will send a message of health\'s current value, 5[/color]\n\thealth = [color=#b4befe]1000[/color] [color=#6c7086]# sets health\'s value to 1000")
+label = NodePath("Panel/MarginContainer/VBoxContainer/RichTextLabel2")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -100
+offset_left = 29.0
+offset_top = 24.0
+offset_right = 611.0
+offset_bottom = 331.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5dis")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.803922, 0.839216, 0.956863, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=#6c7086]1.[/color] understanding variables"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u5dis")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "· variables in programming are like in math
+	∘︎ are used to represent a specific value
+	∘︎ can be changed, a.k.a. \"set\" to values
+
+[color=#9399b2]--- Defining ---[/color]
+★ [color=#f38ba8]var[/color] variable_name = [color=#b4befe]value[/color]
+	∘︎ [color=#f38ba8]var[/color] : keyword to define and create a new variable
+	∘︎ variable_name : the name of the variable, can be used later to get and 
+					  set the variable's value
+	∘︎ [color=#b4befe]value[/color] : the default value of this variable
+
+[color=#9399b2]--- Using ---[/color]
+· you can use the variable's name to get and set it, i.e. ;
+	[color=#f38ba8]var[/color] health = [color=#b4befe]5[/color]
+	[color=#cba6f7]print[/color](health) [color=#6c7086]# will send a message of health's current value, 5[/color]
+	health = [color=#b4befe]1000[/color] [color=#6c7086]# sets health's value to 1000
+	"
+fit_content = true
+
+[node name="Control" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)

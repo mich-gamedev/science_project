@@ -1,0 +1,185 @@
+[gd_scene load_steps=14 format=3 uid="uid://dryodvqadwbai"]
+
+[ext_resource type="Script" uid="uid://cpuml1uia00j5" path="res://objects/player/player.gd" id="1_cqmt1"]
+[ext_resource type="Script" uid="uid://g8kt8k0lx8om" path="res://objects/player/assets.gd" id="2_g7ett"]
+[ext_resource type="Texture2D" uid="uid://c3v457nk42faa" path="res://assets/squircle.svg" id="3_ssrue"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.0941176, 0.0941176, 0.145098, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="Curve" id="Curve_g7ett"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.54182, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssrue"]
+curve = SubResource("Curve_g7ett")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7ett"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 8, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ssrue")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig7tw"]
+bg_color = Color(0.65098, 0.890196, 0.631373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.0666667, 0.0666667, 0.105882, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lq1w"]
+bg_color = Color(0.803922, 0.839216, 0.956863, 1)
+border_color = Color(0.0666667, 0.0666667, 0.105882, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_g7ett"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cqmt1"]
+resource_name = "bounce"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(-8, -24), Vector2(-8, -26), Vector2(-8, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(-8, 0), Vector2(-7.25, 1), Vector2(-8, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssrue"]
+_data = {
+&"RESET": SubResource("Animation_g7ett"),
+&"bounce": SubResource("Animation_cqmt1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lq1w"]
+size = Vector2(12, 12)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cqmt1")
+speed = 144.0
+accel = 640.0
+decel = 960.0
+
+[node name="Assets" type="Node2D" parent="." node_paths=PackedStringArray("body", "particle")]
+script = ExtResource("2_g7ett")
+body = NodePath("..")
+particle = NodePath("GPUParticles2D")
+speed = 144.0
+
+[node name="Shadow" type="Panel" parent="Assets"]
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Assets"]
+texture = ExtResource("3_ssrue")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_g7ett")
+
+[node name="Body" type="Panel" parent="Assets"]
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ig7tw")
+
+[node name="Outline" type="Panel" parent="Assets/Body"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 17.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5lq1w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Assets"]
+libraries = {
+&"": SubResource("AnimationLibrary_ssrue")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_5lq1w")

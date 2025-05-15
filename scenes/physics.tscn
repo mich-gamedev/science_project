@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://cssv00sd12d01"]
+
+[ext_resource type="Script" uid="uid://c840d1akcwcpg" path="res://scenes/variables.gd" id="1_a8rbi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5dis"]
+bg_color = Color(0.117647, 0.117647, 0.180392, 1)
+border_width_left = 3
+border_width_top = 8
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.705882, 0.745098, 0.996078, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u5dis"]
+color = Color(0.270588, 0.278431, 0.352941, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_a8rbi")
+list = PackedStringArray("The engine i\'m using as an example, Godot [img=16]res://icon.svg[/img], handles most collision behaviors for you. This means we only need to worry about controling [color=#b4befe]velocity[/color]", "The engine i\'m using as an example, Godot [img=16]res://icon.svg[/img], handles most collision behaviors for you. This means we only need to worry about controling [color=#b4befe]velocity[/color]\n\n[color=#b4befe]velocity[/color], like in math, is a vector in pixels/second. in code, vectors are specifically represented by an [color=#f38ba8]x[/color] and [color=#a6e3a1]y[/color] component.\n\nfor example, \"[color=#b4befe]velocity[/color].[color=#f38ba8]x[/color] = 80\" will make an object move 80[color=#9399b2]p/s[/color] to the right", "The engine i\'m using as an example, Godot [img=16]res://icon.svg[/img], handles most collision behaviors for you. This means we only need to worry about controling [color=#b4befe]velocity[/color]\n\n[color=#b4befe]velocity[/color], like in math, is a vector in pixels/second. in code, vectors are specifically represented by an [color=#f38ba8]x[/color] and [color=#a6e3a1]y[/color] component.\n\nfor example, \"[color=#b4befe]velocity[/color].[color=#f38ba8]x[/color] = 80\" will make an object move 80[color=#9399b2]p/s[/color] to the right\n\ny behaves differently though, as positive values will move it down instead of up\n\nfor example, \"[color=#b4befe]velocity[/color].[color=#a6e3a1]y[/color] = 80\" will make an object move 80[color=#9399b2]p/s[/color] downwards, since directions are inversed.")
+label = NodePath("Panel/MarginContainer/VBoxContainer/RichTextLabel2")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -100
+offset_left = 29.0
+offset_top = 24.0
+offset_right = 611.0
+offset_bottom = 331.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5dis")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.803922, 0.839216, 0.956863, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=#6c7086]3.[/color] applying physics to code"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u5dis")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "The engine i'm using as an example, Godot [img=16]res://icon.svg[/img], handles most collision behaviors for you. This means we only need to worry about controling [color=#b4befe]velocity[/color]
+
+[color=#b4befe]velocity[/color], like in math, is a vector in pixels/second. in code, vectors are specifically represented by an [color=#f38ba8]x[/color] and [color=#a6e3a1]y[/color] component.
+
+for example, \"[color=#b4befe]velocity[/color].[color=#f38ba8]x[/color] = 80\" will make an object move 80[color=#9399b2]p/s[/color] to the right
+
+y behaves differently though, as positive values will move it down instead of up
+
+for example, \"[color=#b4befe]velocity[/color].[color=#a6e3a1]y[/color] = 80\" will make an object move 80[color=#9399b2]p/s[/color] downwards, since directions are inversed."
+fit_content = true
+
+[node name="Control" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
