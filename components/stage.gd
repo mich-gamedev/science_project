@@ -5,6 +5,11 @@ var scenes: Array[String] = [
 	"res://scenes/variables.tscn",
 	"res://scenes/functions.tscn",
 	"res://scenes/physics.tscn",
+	"res://scenes/example_move_text.tscn",
+	"res://scenes/example_move_play.tscn",
+	"res://scenes/example_drift_text.tscn",
+	"res://scenes/example_drift_play.tscn",
+	
 ]
 var idx: int
 

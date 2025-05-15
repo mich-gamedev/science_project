@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 			velocity = direction * speed
 			move_and_slide()
 		Stages.DRIFT:
-			var direction = position.direction_to(player.position).rotated(deg_to_rad(90))
+			var direction = position.direction_to(player.position).rotated(deg_to_rad(60))
 			velocity = direction * speed
 			move_and_slide()
 		Stages.DRIFT_ACCELERATE:
