@@ -138,6 +138,7 @@ _data = {
 size = Vector2(12, 12)
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_cqmt1")
 speed = 144.0
 accel = 640.0

@@ -22,7 +22,7 @@ grow_end = 0.0
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_ivvmc")
-list = PackedStringArray("games are mainly smoke in mirrors, don\'t use complex equations if not needed! get creative :]\n\nin this case, we can just rotate the direction variable we had before by some amount, causing it to come in at an angle rather than directly towards us. godot has another function for this, [color=#8bd5ca]Vector2[/color].[color=#7dc4e4]rotated[/color](angle)", "games are mainly smoke in mirrors, don\'t use complex equations if not needed! get creative :]\n\nin this case, we can just rotate the direction variable we had before by some amount, causing it to come in at an angle rather than directly towards us. godot has another function for this, [color=#8bd5ca]Vector2[/color].[color=#7dc4e4]rotated[/color](angle)\n\n[color=#ee99a0]var[/color] direction = position.[color=#7dc4e4]direction_to[/color](player.[color=#b7bdf8]position[/color])\n[color=#b7bdf8]direction[/color] = [color=#b7bdf8]direction[/color].[color=#7dc4e4]rotated[/color](80)\n[color=#b7bdf8]velocity[/color] = [color=#b7bdf8]direction[/color] * 120", "games are mainly smoke in mirrors, don\'t use complex equations if not needed! get creative :]\n\nin this case, we can just rotate the direction variable we had before by some amount, causing it to come in at an angle rather than directly towards us. godot has another function for this, [color=#8bd5ca]Vector2[/color].[color=#7dc4e4]rotated[/color](angle)\n\n[color=#ee99a0]var[/color] direction = position.[color=#7dc4e4]direction_to[/color](player.[color=#b7bdf8]position[/color])\n[color=#b7bdf8]direction[/color] = [color=#b7bdf8]direction[/color].[color=#7dc4e4]rotated[/color](80)\n[color=#b7bdf8]velocity[/color] = [color=#b7bdf8]direction[/color] * 120\n\nthis results in...")
+list = PackedStringArray("currently the enemies move to full speed pretty quickly though, and the player could probably use some time to react. we can add acceleration, making it take time to reach full speed", "currently the enemies move to full speed pretty quickly though, and the player could probably use some time to react. we can add acceleration, making it take time to reach full speed\n\ngodot has another convenience function for linear acceleration,\nvalue.move_toward(to, amount)\nthis will move value towards to, by amount each frame, i.e.\n\n10.[color=#74c7ec]move_toward[/color](1000, 8) == 18\n10.[color=#74c7ec]move_toward[/color](0, 8) == 2\n10.[color=#74c7ec]move_toward[/color](14, 8) == 14", "currently the enemies move to full speed pretty quickly though, and the player could probably use some time to react. we can add acceleration, making it take time to reach full speed\n\ngodot has another convenience function for linear acceleration,\nvalue.move_toward(to, amount)\nthis will move value towards to, by amount each frame, i.e.\n\n10.[color=#74c7ec]move_toward[/color](1000, 8) == 18\n10.[color=#74c7ec]move_toward[/color](0, 8) == 2\n10.[color=#74c7ec]move_toward[/color](14, 8) == 14\n\nthis can be used to move the velocity towards a target velocity, by doing;\n\n[color=#b4befe]velocity[/color] = [color=#b4befe]velocity[/color].[color=#74c7ec]move_toward[/color]([color=#b4befe]direction[/color] * [color=#b4befe]speed[/color], [color=#b4befe]accel[/color] * [color=#b4befe]delta[/color])", "currently the enemies move to full speed pretty quickly though, and the player could probably use some time to react. we can add acceleration, making it take time to reach full speed\n\ngodot has another convenience function for linear acceleration,\nvalue.move_toward(to, amount)\nthis will move value towards to, by amount each frame, i.e.\n\n10.[color=#74c7ec]move_toward[/color](1000, 8) == 18\n10.[color=#74c7ec]move_toward[/color](0, 8) == 2\n10.[color=#74c7ec]move_toward[/color](14, 8) == 14\n\nthis can be used to move the velocity towards a target velocity, by doing;\n\n[color=#b4befe]velocity[/color] = [color=#b4befe]velocity[/color].[color=#74c7ec]move_toward[/color]([color=#b4befe]direction[/color] * [color=#b4befe]speed[/color], [color=#b4befe]accel[/color] * [color=#b4befe]delta[/color])\n\nthis code now results in...")
 label = NodePath("Panel/MarginContainer/VBoxContainer/RichTextLabel2")
 
 [node name="Panel" type="Panel" parent="."]
@@ -54,7 +54,7 @@ layout_mode = 2
 theme_override_colors/default_color = Color(0.803922, 0.839216, 0.956863, 1)
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[color=#6c7086]4.[/color] making the enemy drift"
+text = "[color=#6c7086]4.[/color] smoothing out the movement"
 fit_content = true
 autowrap_mode = 0
 
@@ -70,12 +70,14 @@ text = "currently the enemies move to full speed pretty quickly though, and the 
 godot has another convenience function for linear acceleration,
 value.move_toward(to, amount)
 this will move value towards to, by amount each frame, i.e.
-10.move_toward(1000, 8) == 18
-10.move_toward(0, 8) == 2
+
+10.[color=#74c7ec]move_toward[/color](1000, 8) == 18
+10.[color=#74c7ec]move_toward[/color](0, 8) == 2
+10.[color=#74c7ec]move_toward[/color](14, 8) == 14
 
 this can be used to move the velocity towards a target velocity, by doing;
 
-velocity = velocity.move_toward(direction * speed, accel * delta)
+[color=#b4befe]velocity[/color] = [color=#b4befe]velocity[/color].[color=#74c7ec]move_toward[/color]([color=#b4befe]direction[/color] * [color=#b4befe]speed[/color], [color=#b4befe]accel[/color] * [color=#b4befe]delta[/color])
 
 this code now results in..."
 fit_content = true

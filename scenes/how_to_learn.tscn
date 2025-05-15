@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://btdnmi03513cp"]
+
+[ext_resource type="Script" uid="uid://c840d1akcwcpg" path="res://scenes/variables.gd" id="1_xdrnm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5dis"]
+bg_color = Color(0.117647, 0.117647, 0.180392, 1)
+border_width_left = 3
+border_width_top = 8
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.705882, 0.745098, 0.996078, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_u5dis"]
+color = Color(0.270588, 0.278431, 0.352941, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_xdrnm")
+list = PackedStringArray("when enemies run into walls, they tend to just slide along it which can break their flowy movement. we can add a bounce using [color=#a6e3a1]Vector2[/color].[color=#74c7ec]bounce[/color]([color=#b4befe]normal[/color])\n\t◦ [color=#b4befe]normal[/color] is a direction vector perpendicular to the wall, like found\n\t  with light physics previously in the year.\n", "when enemies run into walls, they tend to just slide along it which can break their flowy movement. we can add a bounce using [color=#a6e3a1]Vector2[/color].[color=#74c7ec]bounce[/color]([color=#b4befe]normal[/color])\n\t◦ [color=#b4befe]normal[/color] is a direction vector perpendicular to the wall, like found\n\t  with light physics previously in the year.\n\nin our case, we need to run this code whenever the player is colliding, like so;\n\n[color=#f38ba8]if[/color] [color=#74c7ec]is_on_wall[/color]():\n\t[color=#b4befe]velocity[/color] = [color=#b4befe]velocity[/color].[color=#74c7ec]bounce[/color]([color=#74c7ec]get_wall_normal[/color]())\n", "when enemies run into walls, they tend to just slide along it which can break their flowy movement. we can add a bounce using [color=#a6e3a1]Vector2[/color].[color=#74c7ec]bounce[/color]([color=#b4befe]normal[/color])\n\t◦ [color=#b4befe]normal[/color] is a direction vector perpendicular to the wall, like found\n\t  with light physics previously in the year.\n\nin our case, we need to run this code whenever the player is colliding, like so;\n\n[color=#f38ba8]if[/color] [color=#74c7ec]is_on_wall[/color]():\n\t[color=#b4befe]velocity[/color] = [color=#b4befe]velocity[/color].[color=#74c7ec]bounce[/color]([color=#74c7ec]get_wall_normal[/color]())\n\nthis last bit of code results in...\n")
+label = NodePath("Panel/MarginContainer/VBoxContainer/RichTextLabel2")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -100
+offset_left = 29.0
+offset_top = 24.0
+offset_right = 611.0
+offset_bottom = 331.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5dis")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.803922, 0.839216, 0.956863, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=#6c7086]4.[/color] how to begin?"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_u5dis")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "--- Resources ---
+• Programming fundamentals
+	◦ CS50 --- free class by harvard, an INCREDIBLE headstart
+	◦ GDScript from zero --- an interactive tutorial that teaches
+	  specifically godot's language, GDScript [img=16]res://icon.svg[/img]
+• In-Engine
+	◦ The official docs --- every engine has it's own documentation, meant
+	  to introduce beginners and guide experienced users.
+	◦ Brackey's --- Makes very high-quality tutorials for godot and unity [img=16]res://icon.svg[/img]
+	◦ GDQuest --- Makes godot specific tutorials and showcases [img=16]res://icon.svg[/img]
+• Resources
+	◦ itch.io --- has many free asset packs
+--- Tips ---
+• make sure you understand the code before continuing!!! a 10 minute
+  tutorial should not be taking you 10 minutes
+• join game jams, as they let you get experience releasing things and you 
+  get valuable game design advice
+"
+fit_content = true
+
+[node name="Control" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
